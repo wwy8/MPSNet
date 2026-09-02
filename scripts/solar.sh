@@ -2,7 +2,7 @@ if [ ! -d "./logs" ]; then
     mkdir ./logs
 fi
 
-model_name=HARMON
+model_name=MPSNet
 
 root_path_name=./dataset/solar-energy/
 data_path_name=solar_AL.txt
