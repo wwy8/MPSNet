@@ -2,7 +2,7 @@ if [ ! -d "./logs" ]; then
     mkdir ./logs
 fi
 
-model_name=HARMON
+model_name=MPSNet
 
 root_path_name=./dataset/traffic/
 data_path_name=traffic.csv
