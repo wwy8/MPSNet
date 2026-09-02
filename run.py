@@ -13,7 +13,7 @@ parser.add_argument('--random_seed', type=int, default=3407, help='random seed')
 # basic config
 parser.add_argument('--is_training', type=int, default=1, help='status')
 parser.add_argument('--model_id', type=str, default='ETTh1_720_96', help='model id')
-parser.add_argument('--model', type=str, default='DuFP', help='model name,SparseTSF or DuFP  version2plus')
+parser.add_argument('--model', type=str, default='MPSNet', help='model name,SparseTSF or MPSNet')
 
 # data loader
 parser.add_argument('--data', type=str, default='ETTh1', help='dataset type')
@@ -35,24 +35,10 @@ parser.add_argument('--pred_len', type=int, default=96, help='prediction sequenc
 parser.add_argument('--period_len', type=int, default=48, help='period length')
 parser.add_argument('--model_type', default='mlp', help='model type: linear/mlp')
 
-# HARMON
+# MPSNet
 parser.add_argument('--period_lens', type=list, default=[4, 8, 12, 24, 48], help='period lengths')
 parser.add_argument('--cluster_k', type=int, default=20, help='cluster number')
 
-
-
-# PatchTST
-parser.add_argument('--fc_dropout', type=float, default=0.05, help='fully connected dropout')
-parser.add_argument('--head_dropout', type=float, default=0.0, help='head dropout')
-parser.add_argument('--patch_len', type=int, default=16, help='patch length')
-parser.add_argument('--stride', type=int, default=8, help='stride')
-parser.add_argument('--padding_patch', default='end', help='None: None; end: padding on the end')
-parser.add_argument('--revin', type=int, default=1, help='RevIN; True 1 False 0')
-parser.add_argument('--affine', type=int, default=0, help='RevIN-affine; True 1 False 0')
-parser.add_argument('--subtract_last', type=int, default=0, help='0: subtract mean; 1: subtract last')
-parser.add_argument('--decomposition', type=int, default=0, help='decomposition; True 1 False 0')
-parser.add_argument('--kernel_size', type=int, default=25, help='decomposition-kernel')
-parser.add_argument('--individual', type=int, default=0, help='individual head; True 1 False 0')
 
 # Formers
 parser.add_argument('--embed_type', type=int, default=0, help='0: default 1: value embedding + temporal embedding + positional embedding 2: value embedding + temporal embedding 3: value embedding + positional embedding 4: value embedding')
