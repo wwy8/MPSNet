@@ -1,6 +1,6 @@
 from data_provider.data_factory import data_provider
 from exp.exp_basic import Exp_Basic
-from models import HARMON
+from models import MPSNet
 from utils.tools import EarlyStopping, adjust_learning_rate, visual, test_params_flop
 from utils.metrics import metric
 from utils.polynomial import (chebyshev_torch, hermite_torch, laguerre_torch,
@@ -40,7 +40,7 @@ class Exp_Main(Exp_Basic):
 
     def _build_model(self):
         model_dict = {
-            'HARMON': HARMON
+            'MPSNet': MPSNet
 
         }
         model = model_dict[self.args.model].Model(self.args).float()
@@ -85,7 +85,7 @@ class Exp_Main(Exp_Basic):
                 # encoder - decoder
                 if self.args.use_amp:
                     with torch.cuda.amp.autocast():
-                        if any(substr in self.args.model for substr in {'HARMON', 'SparseTSF'}):
+                        if any(substr in self.args.model for substr in {'MPSNet', 'SparseTSF'}):
                             outputs = self.model(batch_x)
 
                         else:
@@ -94,7 +94,7 @@ class Exp_Main(Exp_Basic):
                             else:
                                 outputs = self.model(batch_x, batch_x_mark, dec_inp, batch_y_mark)
                 else:
-                    if any(substr in self.args.model for substr in {'HARMON', 'SparseTSF'}):
+                    if any(substr in self.args.model for substr in {'MPSNet', 'SparseTSF'}):
                         outputs = self.model(batch_x)
 
                     else:
@@ -163,7 +163,7 @@ class Exp_Main(Exp_Basic):
                 # encoder - decoder
                 if self.args.use_amp:
                     with torch.cuda.amp.autocast():
-                        if any(substr in self.args.model for substr in {'HARMON', 'SparseTSF'}):
+                        if any(substr in self.args.model for substr in {'MPSNet', 'SparseTSF'}):
                             # outputs = self.model(batch_x, return_period_preds=False)
                             outputs = self.model(batch_x)
                         else:
@@ -209,7 +209,7 @@ class Exp_Main(Exp_Basic):
                         train_loss.append(loss.item())
 
                 else:
-                    if any(substr in self.args.model for substr in {'HARMON', 'SparseTSF'}):
+                    if any(substr in self.args.model for substr in {'MPSNet', 'SparseTSF'}):
                         outputs = self.model(batch_x)
                     else:
                         if self.args.output_attention:
@@ -298,7 +298,7 @@ class Exp_Main(Exp_Basic):
                 # encoder - decoder
                 if self.args.use_amp:
                     with torch.cuda.amp.autocast():
-                        if any(substr in self.args.model for substr in {'HARMON', 'SparseTSF'}):
+                        if any(substr in self.args.model for substr in {'MPSNet', 'SparseTSF'}):
                             outputs = self.model(batch_x)
                         else:
                             if self.args.output_attention:
@@ -306,7 +306,7 @@ class Exp_Main(Exp_Basic):
                             else:
                                 outputs = self.model(batch_x, batch_x_mark, dec_inp, batch_y_mark)
                 else:
-                    if any(substr in self.args.model for substr in {'HARMON', 'SparseTSF'}):
+                    if any(substr in self.args.model for substr in {'MPSNet', 'SparseTSF'}):
                         outputs = self.model(batch_x)
                     else:
                         if self.args.output_attention:
